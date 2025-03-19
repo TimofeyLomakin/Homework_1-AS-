@@ -73,26 +73,27 @@
 
     <ImageView
         android:id="@+id/likes"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/barrierBottom"
-        app:srcCompat="@mipmap/heart_foreground" />
+        app:srcCompat="@drawable/ic_like_24" />
 
     <TextView
         android:id="@+id/likes_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/textView_post_count_likes"
+        android:layout_marginStart="8dp"
         app:layout_constraintBottom_toBottomOf="@id/likes"
         app:layout_constraintStart_toEndOf="@id/likes"
         app:layout_constraintTop_toTopOf="@id/likes" />
 
     <ImageView
         android:id="@+id/share"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="24dp"
         app:layout_constraintBottom_toBottomOf="@id/likes"
         app:layout_constraintStart_toEndOf="@id/likes_count"
         app:layout_constraintTop_toTopOf="@id/likes"
@@ -102,7 +103,7 @@
         android:id="@+id/share_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="8dp"
         android:text="@string/textView_post_share_count"
         app:layout_constraintBottom_toBottomOf="@id/share"
         app:layout_constraintStart_toEndOf="@id/share"
@@ -110,19 +111,19 @@
 
     <ImageView
         android:id="@+id/views"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginEnd="48dp"
         app:layout_constraintBottom_toBottomOf="@id/likes"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/likes"
-        android:layout_marginEnd="48dp"
         app:srcCompat="@android:drawable/ic_menu_view" />
 
     <TextView
         android:id="@+id/views_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="8dp"
         android:text="@string/textView_post_views_count"
         app:layout_constraintBottom_toBottomOf="@id/views"
         app:layout_constraintStart_toEndOf="@id/views"
