@@ -36,12 +36,9 @@ class MainActivity : AppCompatActivity() {
             author.text = post.author
             published.text = post.published
             content.text = post.content
-            val textViewLikes = findViewById<TextView>(R.id.likes_count)
-            val textViewShare = findViewById<TextView>(R.id.share_count)
-            val textViewViews = findViewById<TextView>(R.id.views_count)
-            textViewLikes.text = translate(post.likesCounter)
-            textViewShare.text = translate(post.shareCounter)
-            textViewViews.text = translate(post.viewsCounter)
+            likesCount.text = translate(post.likesCounter)
+            shareCount.text = translate(post.shareCounter)
+            viewsCount.text = translate(post.viewsCounter)
 
             likes.setImageResource(R.drawable.ic_like_24)
             likes.setOnClickListener {
@@ -49,17 +46,17 @@ class MainActivity : AppCompatActivity() {
 
                 likes.setImageResource(
                     if (post.likeByMe) {
-                        textViewLikes.text = translate(post.likesCounter++)
-                        R.drawable.ic_like_24
-                    } else {
-                        textViewLikes.text = translate(post.likesCounter--)
+                        likesCount.text = translate(++post.likesCounter)
                         R.drawable.ic_liked_24
+                    } else {
+                        likesCount.text = translate(--post.likesCounter)
+                        R.drawable.ic_like_24
                     }
                 )
             }
 
             share.setOnClickListener {
-                textViewShare.text = translate(post.shareCounter++)
+                shareCount.text = translate(++post.shareCounter)
             }
         }
 

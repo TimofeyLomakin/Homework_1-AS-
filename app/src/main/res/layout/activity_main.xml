@@ -104,7 +104,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="@string/textView_post_share_count"
         app:layout_constraintBottom_toBottomOf="@id/share"
         app:layout_constraintStart_toEndOf="@id/share"
         app:layout_constraintTop_toTopOf="@id/share" />
@@ -124,7 +123,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="@string/textView_post_views_count"
         app:layout_constraintBottom_toBottomOf="@id/views"
         app:layout_constraintStart_toEndOf="@id/views"
         app:layout_constraintTop_toTopOf="@id/views" />
