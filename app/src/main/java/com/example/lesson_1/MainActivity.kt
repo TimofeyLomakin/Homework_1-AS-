@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
             "Нетология. Университет интернет-профессий будущего",
             "21 мая в 18:36",
             "Привет, это новая Нетология! Когда-то Нетология начиналась с интенсивов по онлайн-маркетингу. Затем появились курсы по дизайну, разработке, аналитике и управлению. Мы растём сами и помогаем расти студентам: от новичков до уверенных профессионалов. Но самое важное остаётся с нами: мы верим, что в каждом уже есть сила, которая заставляет хотеть больше, целиться выше, бежать быстрее. Наша миссия — помочь встать на путь роста и начать цепочку перемен → http://netolo.gy/fyb",
-            false,
+            true,
             999,
             1_999_999,
             19_999
@@ -40,7 +40,11 @@ class MainActivity : AppCompatActivity() {
             shareCount.text = translate(post.shareCounter)
             viewsCount.text = translate(post.viewsCounter)
 
-            likes.setImageResource(R.drawable.ic_like_24)
+            if (post.likeByMe) {
+                likes.setImageResource(R.drawable.ic_liked_24)
+            } else {
+                likes.setImageResource(R.drawable.ic_like_24)
+            }
             likes.setOnClickListener {
                 post.likeByMe = !post.likeByMe
 
