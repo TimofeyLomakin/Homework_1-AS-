@@ -13,7 +13,6 @@ android {
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -27,23 +26,39 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "1.8"
     }
-    buildFeatures.viewBinding = true
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
+    val core_version = "1.15.0"
+    val appcompat_version = "1.7.0"
+    val mdc_version = "1.12.0"
+    val constraintlayout_version = "2.2.1"
+    val recyclerview_version = "1.4.0"
+    val junit_version = "4.13.2"
+    val ext_junit_version = "1.2.1"
+    val espresso_core_version = "3.6.1"
+    val activity_version = "1.10.1"
+    val lifecycle_version = "2.8.7"
 
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.material)
-    implementation(libs.androidx.activity)
-    implementation(libs.androidx.constraintlayout)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+    implementation("androidx.core:core-ktx:$core_version")
+    implementation("androidx.appcompat:appcompat:$appcompat_version")
+    implementation("com.google.android.material:material:$mdc_version")
+    implementation("androidx.constraintlayout:constraintlayout:$constraintlayout_version")
+    implementation("androidx.recyclerview:recyclerview:$recyclerview_version")
+    implementation("androidx.activity:activity-ktx:$activity_version")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version")
+
+    testImplementation("junit:junit:$junit_version")
+    androidTestImplementation("androidx.test.ext:junit:$ext_junit_version")
+    androidTestImplementation("androidx.test.espresso:espresso-core:$espresso_core_version")
 }
