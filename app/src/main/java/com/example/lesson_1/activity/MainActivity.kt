@@ -32,28 +32,28 @@ class MainActivity : AppCompatActivity() {
                 likesCount.text = translate(post.likesCounter)
                 shareCount.text = translate(post.shareCounter)
                 viewsCount.text = translate(post.viewsCounter)
-
-                    likes.setImageResource(
-                        if (post.likeByMe) {
-                            R.drawable.ic_liked_24
-                        } else {
-                            R.drawable.ic_like_24
-                        }
-                    )
+                likes.setImageResource(
+                    if (post.likeByMe) {
+                        R.drawable.ic_liked_24
+                    } else {
+                        R.drawable.ic_like_24
+                    }
+                )
                 likes.setOnClickListener {
                     viewModel.like()
-                    likesCount.text = translate(post.likesCounter)
                 }
                 share.setOnClickListener {
                     viewModel.shareCount()
-                    shareCount.text = translate(post.shareCounter)
                 }
-                }
-
-
-
-
             }
 
         }
+        binding.likes.setOnClickListener {
+            viewModel.like()
+        }
+        binding.share.setOnClickListener {
+            viewModel.shareCount()
+        }
+
     }
+}

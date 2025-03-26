@@ -27,6 +27,7 @@ class PostRepositoryInMemoryImpl : PostRepository {
         }
         data.value = post
     }
+
     override fun shareCount() {
         post = post.copy(shareCounter = ++post.shareCounter)
         data.value = post
