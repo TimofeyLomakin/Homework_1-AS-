@@ -2,6 +2,9 @@ package com.example.lesson_1.adapter;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.lesson_1.R;
 import com.example.lesson_1.activity.translate
@@ -11,12 +14,7 @@ import com.example.lesson_1.dto.Post;
 
 typealias OnLikeListener = (Post) -> Unit
 typealias OnShareListener = (Post) -> Unit
-class PostsAdapter (private val onLikeListener: OnLikeListener, private val onShareListener : OnShareListener) : RecyclerView.Adapter<PostViewHolder>() {
-    var list: List<Post> = emptyList()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }
+class PostsAdapter (private val onLikeListener: OnLikeListener, private val onShareListener : OnShareListener) : ListAdapter<Post, PostViewHolder> (PostDiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
         val view = CardPostBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -24,10 +22,8 @@ class PostsAdapter (private val onLikeListener: OnLikeListener, private val onSh
     }
 
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
-        holder.bind(list[position])
+        holder.bind(getItem(position))
     }
-
-    override fun getItemCount() = list.size
 }
 
     class PostViewHolder(
@@ -52,4 +48,11 @@ class PostsAdapter (private val onLikeListener: OnLikeListener, private val onSh
             shareCount.text = translate(post.shareCounter)
             viewsCount.text = translate(post.viewsCounter)
     }
+}
+
+object PostDiffCallback : DiffUtil.ItemCallback<Post>() {
+    override fun areItemsTheSame(oldItem: Post, newItem: Post) = oldItem.id == newItem.id
+
+    override fun areContentsTheSame(oldItem: Post, newItem: Post) = oldItem == newItem
+
 }
