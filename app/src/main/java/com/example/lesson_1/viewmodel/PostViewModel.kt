@@ -29,7 +29,7 @@ class PostViewModel : ViewModel() {
 
     fun changeContentAndSave(text: String) {
         edited.value?.let {
-            if (it.content != text) {
+            if (it.content != text && text != "cancel_edit") {
                 repository.save(it.copy(content = text))
             }
             edited.value = empty
