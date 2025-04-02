@@ -107,6 +107,7 @@ class PostRepositoryInMemoryImpl : PostRepository {
         posts = posts.map { post ->
             if (post.id != id) post else {
                 val newLikes = if (post.likeByMe) post.likesCounter - 1 else post.likesCounter + 1
+
                 post.copy(likeByMe = !post.likeByMe, likesCounter = newLikes)
             }
         }

@@ -42,9 +42,12 @@ class PostsAdapter(private val onInteractionListener: OnInteractionListener) : L
             author.text = post.author
             published.text = post.published
             content.text = post.content
-            likes.setImageResource(
-                if (post.likeByMe) R.drawable.ic_liked_24 else R.drawable.ic_like_24
-            )
+            likes.apply {
+                isChecked = post.likeByMe
+                text = translate(post.likesCounter)
+            }
+            share.text = translate(post.shareCounter)
+
             menu.setOnClickListener {
                 PopupMenu(it.context, it).apply {
                     inflate(R.menu.options_menu)
@@ -70,8 +73,6 @@ class PostsAdapter(private val onInteractionListener: OnInteractionListener) : L
             share.setOnClickListener {
                 onInteractionListener.onShare(post)
             }
-            likesCount.text = translate(post.likesCounter)
-            shareCount.text = translate(post.shareCounter)
             viewsCount.text = translate(post.viewsCounter)
     }
 }
