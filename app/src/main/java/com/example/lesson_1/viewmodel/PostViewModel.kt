@@ -15,8 +15,10 @@ private val empty = Post(
     published = "",
     likesCounter = 0L,
     shareCounter = 0L,
-    viewsCounter = 0L
+    viewsCounter = 0L,
+    youtubeUrl = ""
 )
+
 class PostViewModel : ViewModel() {
 
     private val repository: PostRepository = PostRepositoryInMemoryImpl()
@@ -35,7 +37,8 @@ class PostViewModel : ViewModel() {
             edited.value = empty
         }
     }
-    fun likeById(id : Long) = repository.likeById(id)
-    fun shareById(id : Long) = repository.shareById(id)
-    fun removeById(id : Long) = repository.removeById(id)
+
+    fun likeById(id: Long) = repository.likeById(id)
+    fun shareById(id: Long) = repository.shareById(id)
+    fun removeById(id: Long) = repository.removeById(id)
 }

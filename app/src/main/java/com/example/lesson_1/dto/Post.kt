@@ -8,5 +8,6 @@ data class Post(
     val likeByMe: Boolean,
     val likesCounter: Long,
     val shareCounter: Long,
-    val viewsCounter: Long
+    val viewsCounter: Long,
+    val youtubeUrl: String
 )

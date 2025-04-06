@@ -1,8 +1,10 @@
 package com.example.lesson_1.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.activity.result.launch
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.lesson_1.R
@@ -20,11 +22,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val viewModel: PostViewModel by viewModels()
+        val newPostLauncher = registerForActivityResult(NewPostResultContract) { content ->
+            content ?: return@registerForActivityResult
+            viewModel.changeContentAndSave(content)
+        }
         val adapter = PostsAdapter(object : OnInteractionListener {
             override fun onEdit(post: Post) {
-                binding.cancelGroup.visibility = View.VISIBLE
-                binding.editText.text = post.content
                 viewModel.edit(post)
+                newPostLauncher.launch(post.content)
             }
 
             override fun onLike(post: Post) {
@@ -34,6 +39,7 @@ class MainActivity : AppCompatActivity() {
             override fun onShare(post: Post) {
                 viewModel.shareById(post.id)
             }
+
 
             override fun onRemove(post: Post) {
                 viewModel.removeById(post.id)
@@ -46,42 +52,21 @@ class MainActivity : AppCompatActivity() {
             if (newPost) {
                 binding.list.scrollToPosition(0)
             }
+
+        }
+
+        binding.fab.setOnClickListener {
+            newPostLauncher.launch("")
         }
 
 
-        viewModel.edited.observe(this)
-        {
-            if (it.id != 0L) {
-                binding.content.setText(it.content)
-                binding.content.requestFocus()
-            }
-        }
-
-        binding.add.setOnClickListener {
-            binding.cancelGroup.visibility = View.GONE
-            val text = binding.content.text.toString()
-            if (text.isBlank()) {
-                Toast.makeText(
-                    this@MainActivity,
-                    R.string.error_empty_content,
-                    Toast.LENGTH_LONG
-                ).show()
-                return@setOnClickListener
-            }
-
-            viewModel.changeContentAndSave(text)
-
-            binding.content.setText("")
-            binding.content.clearFocus()
-            AndroidUtils.hideKeyboard(it)
-        }
-
-        binding.cancel.setOnClickListener {
-            viewModel.changeContentAndSave("cancel_edit")
-            binding.content.setText("")
-            binding.content.clearFocus()
-            binding.cancelGroup.visibility = View.GONE
-        }
+//
+//        binding.cancel.setOnClickListener {
+//            viewModel.changeContentAndSave("cancel_edit")
+//            binding.content.setText("")
+//            binding.content.clearFocus()
+//            binding.cancelGroup.visibility = View.GONE
+//        }
     }
 }
 

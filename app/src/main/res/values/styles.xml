@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <resources>
+
     <style name="App.Widget.LikeCheckBox" parent="Widget.MaterialComponents.CompoundButton.CheckBox">
         <item name="buttonTint">@color/color_like_selector</item>
     </style>
@@ -21,7 +22,6 @@
         <item name="strokeColor">@color/white</item>
 
     </style>
-
 
 
 </resources>

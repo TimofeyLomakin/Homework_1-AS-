@@ -16,7 +16,8 @@ class PostRepositoryInMemoryImpl : PostRepository {
             likeByMe = false,
             likesCounter = 9999,
             shareCounter = 1_999_999,
-            viewsCounter = 19_999
+            viewsCounter = 19_999,
+            youtubeUrl = "https://www.youtube.com/watch?v=FORB4z7rPZ8"
         ),
         Post(
             id = nextId++,
@@ -26,7 +27,8 @@ class PostRepositoryInMemoryImpl : PostRepository {
             likeByMe = false,
             likesCounter = 9999,
             shareCounter = 1_999_999,
-            viewsCounter = 19_999
+            viewsCounter = 19_999,
+            youtubeUrl = ""
         ),
         Post(
             id = nextId++,
@@ -36,7 +38,8 @@ class PostRepositoryInMemoryImpl : PostRepository {
             likeByMe = false,
             likesCounter = 9999,
             shareCounter = 1_999_999,
-            viewsCounter = 19_999
+            viewsCounter = 19_999,
+            youtubeUrl = ""
         ),
         Post(
             id = nextId++,
@@ -46,7 +49,8 @@ class PostRepositoryInMemoryImpl : PostRepository {
             likeByMe = false,
             likesCounter = 9999,
             shareCounter = 1_999_999,
-            viewsCounter = 19_999
+            viewsCounter = 19_999,
+            youtubeUrl = ""
         ),
         Post(
             id = nextId++,
@@ -56,7 +60,8 @@ class PostRepositoryInMemoryImpl : PostRepository {
             likeByMe = false,
             likesCounter = 9999,
             shareCounter = 1_999_999,
-            viewsCounter = 19_999
+            viewsCounter = 19_999,
+            youtubeUrl = ""
         ),
         Post(
             id = nextId++,
@@ -66,7 +71,8 @@ class PostRepositoryInMemoryImpl : PostRepository {
             likeByMe = false,
             likesCounter = 9999,
             shareCounter = 1_999_999,
-            viewsCounter = 19_999
+            viewsCounter = 19_999,
+            youtubeUrl = ""
         ),
         Post(
             id = nextId++,
@@ -76,7 +82,8 @@ class PostRepositoryInMemoryImpl : PostRepository {
             likeByMe = false,
             likesCounter = 9999,
             shareCounter = 1_999_999,
-            viewsCounter = 19_999
+            viewsCounter = 19_999,
+            youtubeUrl = ""
         ),
         Post(
             id = nextId++,
@@ -86,7 +93,8 @@ class PostRepositoryInMemoryImpl : PostRepository {
             likeByMe = false,
             likesCounter = 9999,
             shareCounter = 1_999_999,
-            viewsCounter = 19_999
+            viewsCounter = 19_999,
+            youtubeUrl = ""
         ),
         Post(
             id = nextId++,
@@ -96,7 +104,8 @@ class PostRepositoryInMemoryImpl : PostRepository {
             likeByMe = false,
             likesCounter = 9999,
             shareCounter = 1_999_999,
-            viewsCounter = 19_999
+            viewsCounter = 19_999,
+            youtubeUrl = ""
         ),
     )
 
@@ -131,7 +140,8 @@ class PostRepositoryInMemoryImpl : PostRepository {
             ) + posts
         } else {
             posts.map {
-                if (it.id != post.id) it else it.copy(content = post.content)}
+                if (it.id != post.id) it else it.copy(content = post.content)
+            }
         }
         data.value = posts
     }
