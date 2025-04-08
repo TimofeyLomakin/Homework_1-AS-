@@ -1,10 +1,15 @@
 package com.example.lesson_1.viewmodel
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.lesson_1.dto.Post
 import com.example.lesson_1.repository.PostRepository
+import com.example.lesson_1.repository.PostRepositoryFilesImpl
 import com.example.lesson_1.repository.PostRepositoryInMemoryImpl
+import com.example.lesson_1.repository.PostRepositorySharedPrefsImpl
+import java.lang.Appendable
 
 
 private val empty = Post(
@@ -19,9 +24,9 @@ private val empty = Post(
     youtubeUrl = ""
 )
 
-class PostViewModel : ViewModel() {
+class PostViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val repository: PostRepository = PostRepositoryInMemoryImpl()
+    private val repository: PostRepository = PostRepositoryFilesImpl(application)
     val data = repository.getAll()
     val edited = MutableLiveData(empty)
 
