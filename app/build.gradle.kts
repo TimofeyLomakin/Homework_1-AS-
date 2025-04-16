@@ -39,6 +39,8 @@ android {
 
 dependencies {
     implementation(libs.androidx.activity)
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
     val core_version = "1.15.0"
     val appcompat_version = "1.7.0"
     val mdc_version = "1.12.0"
@@ -57,6 +59,7 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:$constraintlayout_version")
     implementation("androidx.recyclerview:recyclerview:$recyclerview_version")
     implementation("androidx.activity:activity-ktx:$activity_version")
+    implementation("androidx.fragment:fragment-ktx:1.8.6")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version")
     implementation("com.google.code.gson:gson:$gson_version")

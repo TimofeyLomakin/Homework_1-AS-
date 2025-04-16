@@ -2,14 +2,11 @@ package com.example.lesson_1.adapter;
 
 import android.content.Intent
 import android.net.Uri
+import android.os.Bundle
 import android.view.LayoutInflater;
 import android.view.View
 import android.view.ViewGroup;
 import android.widget.PopupMenu
-import androidx.activity.result.launch
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.core.content.ContextCompat.startActivity
-
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,7 +21,7 @@ interface OnInteractionListener {
     fun onShare(post: Post) {}
     fun onEdit(post: Post) {}
     fun onRemove(post: Post) {}
-
+    fun onPostClick(post: Post) {}
 }
 
 class PostsAdapter(private val onInteractionListener: OnInteractionListener) :
@@ -93,11 +90,23 @@ class PostViewHolder(
         playYoutube.setOnClickListener {
             startYouTube(post.youtubeUrl)
         }
+        itemView.setOnClickListener { view ->
+            if (!isClickOnInteractiveElement(view)) {
+                onInteractionListener.onPostClick(post)
+            }
+        }
     }
 
     private fun startYouTube(youtubeUrl: String) {
         val intent = Intent(Intent.ACTION_VIEW, Uri.parse(youtubeUrl))
         itemView.context.startActivity(intent)
+    }
+    private fun isClickOnInteractiveElement(view: View): Boolean {
+        return when (view.id) {
+            R.id.menu, R.id.likes, R.id.share,
+            R.id.youtubeLogo, R.id.playYoutube -> true
+            else -> false
+        }
     }
 }
 

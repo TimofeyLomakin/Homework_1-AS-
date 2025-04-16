@@ -9,10 +9,9 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import androidx.core.content.edit
 
-class PostRepositoryFilesImpl(private val context : Context) : PostRepository {
+class PostRepositoryFilesImpl(private val context: Context) : PostRepository {
     private var nextId = 1L
     private var posts = emptyList<Post>()
-
         set(value) {
             field = value
             data.value = posts
@@ -71,7 +70,7 @@ class PostRepositoryFilesImpl(private val context : Context) : PostRepository {
         data.value = posts
     }
 
-    private fun sync(){
+    private fun sync() {
         context.openFileOutput(FILENAME, Context.MODE_PRIVATE).bufferedWriter().use {
             it.write(gson.toJson(posts))
         }

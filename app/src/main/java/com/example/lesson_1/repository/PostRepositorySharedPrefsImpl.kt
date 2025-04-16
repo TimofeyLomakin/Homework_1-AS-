@@ -9,11 +9,10 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import androidx.core.content.edit
 
-class PostRepositorySharedPrefsImpl(context : Context) : PostRepository {
+class PostRepositorySharedPrefsImpl(context: Context) : PostRepository {
     private val prefs = context.getSharedPreferences("repo", Context.MODE_PRIVATE)
     private var nextId = 1L
     private var posts = emptyList<Post>()
-
         set(value) {
             field = value
             data.value = posts
@@ -22,9 +21,9 @@ class PostRepositorySharedPrefsImpl(context : Context) : PostRepository {
     private val data = MutableLiveData(posts)
 
     init {
-        prefs.getString(KEY_POSTS, null)?.let{
+        prefs.getString(KEY_POSTS, null)?.let {
             posts = gson.fromJson(it, type)
-            nextId = (posts.maxOfOrNull{it.id}?: 0) + 1
+            nextId = (posts.maxOfOrNull { it.id } ?: 0) + 1
             data.value = posts
         }
     }
@@ -69,7 +68,7 @@ class PostRepositorySharedPrefsImpl(context : Context) : PostRepository {
         data.value = posts
     }
 
-    private fun sync(){
+    private fun sync() {
         prefs.edit {
             putString(KEY_POSTS, gson.toJson(posts))
         }
