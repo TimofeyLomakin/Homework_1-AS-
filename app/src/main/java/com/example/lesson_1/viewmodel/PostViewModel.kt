@@ -5,10 +5,12 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.lesson_1.db.AppDb
 import com.example.lesson_1.dto.Post
 import com.example.lesson_1.repository.PostRepository
 import com.example.lesson_1.repository.PostRepositoryFilesImpl
 import com.example.lesson_1.repository.PostRepositoryInMemoryImpl
+import com.example.lesson_1.repository.PostRepositorySQLiteImpl
 import com.example.lesson_1.repository.PostRepositorySharedPrefsImpl
 import java.lang.Appendable
 
@@ -27,7 +29,9 @@ private val empty = Post(
 
 class PostViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val repository: PostRepository = PostRepositoryFilesImpl(application)
+    private val repository: PostRepository = PostRepositorySQLiteImpl(
+        AppDb.getInstance(application).postDao
+    )
     val data = repository.getAll()
     val edited = MutableLiveData(empty)
 
