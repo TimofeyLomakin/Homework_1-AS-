@@ -1,5 +1,6 @@
 package com.example.lesson_1.dto
 
+
 data class Post(
     val id: Long,
     val author: String,

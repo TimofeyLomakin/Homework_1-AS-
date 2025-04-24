@@ -101,10 +101,12 @@ class PostViewHolder(
         val intent = Intent(Intent.ACTION_VIEW, Uri.parse(youtubeUrl))
         itemView.context.startActivity(intent)
     }
+
     private fun isClickOnInteractiveElement(view: View): Boolean {
         return when (view.id) {
             R.id.menu, R.id.likes, R.id.share,
             R.id.youtubeLogo, R.id.playYoutube -> true
+
             else -> false
         }
     }

@@ -67,7 +67,8 @@ class PostFragment : Fragment() {
 
                     likes.isChecked = post.likeByMe
 
-                    youtubeGroup.visibility = if (post.youtubeUrl.isNotEmpty()) View.VISIBLE else View.GONE
+                    youtubeGroup.visibility =
+                        if (post.youtubeUrl.isNotEmpty()) View.VISIBLE else View.GONE
                 }
             }
         }

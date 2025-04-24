@@ -1,7 +1,9 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id ("kotlin-kapt")
 }
+
 
 android {
     namespace = "com.example.lesson_1"
@@ -52,6 +54,7 @@ dependencies {
     val activity_version = "1.10.1"
     val lifecycle_version = "2.8.7"
     val gson_version = "2.12.1"
+    val room_version = "2.5.2"
 
     implementation("androidx.core:core-ktx:$core_version")
     implementation("androidx.appcompat:appcompat:$appcompat_version")
@@ -63,6 +66,8 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version")
     implementation("com.google.code.gson:gson:$gson_version")
+    implementation("androidx.room:room-runtime:$room_version")
+    kapt ("androidx.room:room-compiler:$room_version")
 
     testImplementation("junit:junit:$junit_version")
     androidTestImplementation("androidx.test.ext:junit:$ext_junit_version")
