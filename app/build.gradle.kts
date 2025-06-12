@@ -26,6 +26,9 @@ android {
                 "proguard-rules.pro"
             )
         }
+        debug {
+            manifestPlaceholders["usesCleartextTraffic"] = true
+        }
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -55,6 +58,10 @@ dependencies {
     val lifecycle_version = "2.8.7"
     val gson_version = "2.12.1"
     val room_version = "2.5.2"
+    val firebase_version = "33.13.0"
+    val okhttp_version = "4.12.0"
+    val play_services_base_version = "18.3.0"
+    val core_desugaring_version = "2.1.5"
 
     implementation("androidx.core:core-ktx:$core_version")
     implementation("androidx.appcompat:appcompat:$appcompat_version")
@@ -68,6 +75,11 @@ dependencies {
     implementation("com.google.code.gson:gson:$gson_version")
     implementation("androidx.room:room-runtime:$room_version")
     kapt ("androidx.room:room-compiler:$room_version")
+    implementation (platform("com.google.firebase:firebase-bom:$firebase_version"))
+    implementation ("com.google.firebase:firebase-messaging-ktx")
+    implementation ("com.squareup.okhttp3:okhttp:$okhttp_version")
+    implementation ("com.google.android.gms:play-services-base:$play_services_base_version")
+    coreLibraryDesugaring ("com.android.tools:desugar_jdk_libs:$core_desugaring_version")
 
     testImplementation("junit:junit:$junit_version")
     androidTestImplementation("androidx.test.ext:junit:$ext_junit_version")
