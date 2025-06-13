@@ -1,17 +1,14 @@
 package com.example.lesson_1.activity
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.lesson_1.R
-import com.example.lesson_1.activity.NewPostFragment.Companion.textArg
 import com.example.lesson_1.adapter.OnInteractionListener
 import com.example.lesson_1.adapter.PostsAdapter
 import com.example.lesson_1.databinding.FragmentFeedBinding
@@ -20,7 +17,7 @@ import com.example.lesson_1.viewmodel.PostViewModel
 
 class FeedFragment : Fragment() {
 
-    private val viewModel: PostViewModel by viewModels()
+    private val viewModel: PostViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
