@@ -10,4 +10,7 @@
     <string name="post_text">Текст поста</string>
     <string name="error_empty_content">Контент не может быть пустым</string>
     <string name="title_edit">Изменить</string>
+    <string name="error_loading">Что то пошло не так. Повторите позже</string>
+    <string name="retry_loading">Повторить</string>
+    <string name="empty_posts">Список постов пуст \\n Как только вы добавите пост, он отобразиться на этом экране</string>
 </resources>
