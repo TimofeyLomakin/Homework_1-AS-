@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    id ("kotlin-kapt")
+    id("kotlin-kapt")
 }
 
 
@@ -74,12 +74,12 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version")
     implementation("com.google.code.gson:gson:$gson_version")
     implementation("androidx.room:room-runtime:$room_version")
-    kapt ("androidx.room:room-compiler:$room_version")
-    implementation (platform("com.google.firebase:firebase-bom:$firebase_version"))
-    implementation ("com.google.firebase:firebase-messaging-ktx")
-    implementation ("com.squareup.okhttp3:okhttp:$okhttp_version")
-    implementation ("com.google.android.gms:play-services-base:$play_services_base_version")
-    coreLibraryDesugaring ("com.android.tools:desugar_jdk_libs:$core_desugaring_version")
+    kapt("androidx.room:room-compiler:$room_version")
+    implementation(platform("com.google.firebase:firebase-bom:$firebase_version"))
+    implementation("com.google.firebase:firebase-messaging-ktx")
+    implementation("com.squareup.okhttp3:okhttp:$okhttp_version")
+    implementation("com.google.android.gms:play-services-base:$play_services_base_version")
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:$core_desugaring_version")
 
     testImplementation("junit:junit:$junit_version")
     androidTestImplementation("androidx.test.ext:junit:$ext_junit_version")

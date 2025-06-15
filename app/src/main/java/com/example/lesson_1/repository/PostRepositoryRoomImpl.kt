@@ -14,16 +14,16 @@ import java.io.IOException
 import java.util.concurrent.TimeUnit
 
 class PostRepositoryRoomImpl : PostRepository {
-        private val client = OkHttpClient.Builder()
-            .connectTimeout(30, TimeUnit.SECONDS)
-            .build()
-        private val gson = Gson()
-        private val typeToken = object : TypeToken<List<Post>>() {}
+    private val client = OkHttpClient.Builder()
+        .connectTimeout(30, TimeUnit.SECONDS)
+        .build()
+    private val gson = Gson()
+    private val typeToken = object : TypeToken<List<Post>>() {}
 
-        companion object {
-            private const val BASE_URL = "http://10.0.2.2:9999"
-            private val jsonType = "application/json".toMediaType()
-        }
+    companion object {
+        private const val BASE_URL = "http://10.0.2.2:9999"
+        private val jsonType = "application/json".toMediaType()
+    }
 
 
     override fun getAllAsync(callback: PostRepository.GetAllCallback) {
@@ -35,20 +35,26 @@ class PostRepositoryRoomImpl : PostRepository {
             .enqueue(object : Callback {
                 override fun onResponse(call: Call, response: Response) {
                     try {
-                        val posts = response.body?.string() ?: throw RuntimeException("body is null")
+                        val posts =
+                            response.body?.string() ?: throw RuntimeException("body is null")
                         callback.onSuccess(gson.fromJson(posts, typeToken.type))
                     } catch (e: Exception) {
                         callback.onError(e)
                     }
                 }
+
                 override fun onFailure(call: Call, e: IOException) {
                     callback.onError(e)
                 }
             })
     }
 
-    override fun likeByIdAsync(id: Long, likeByMe: Boolean, callback: PostRepository.LikeByIdCallback) {
-        val request: Request = if(likeByMe) {
+    override fun likeByIdAsync(
+        id: Long,
+        likeByMe: Boolean,
+        callback: PostRepository.LikeByIdCallback
+    ) {
+        val request: Request = if (likeByMe) {
             Request.Builder()
                 .delete()
                 .url("${BASE_URL}/api/posts/$id/likes")
@@ -65,17 +71,16 @@ class PostRepositoryRoomImpl : PostRepository {
                 override fun onResponse(call: Call, response: Response) {
                     try {
                         if (response.isSuccessful) {
-                            val responseBody = response.body?.string() ?: throw RuntimeException("body is null")
+                            val responseBody =
+                                response.body?.string() ?: throw RuntimeException("body is null")
                             val post = gson.fromJson(responseBody, Post::class.java)
                             callback.onSuccess(post)
                         } else {
                             callback.onError(RuntimeException("error"))
                         }
-                    }
-                    catch (e: Exception){
+                    } catch (e: Exception) {
                         callback.onError(e)
-                    }
-                    finally {
+                    } finally {
                         response.close()
                     }
                 }
@@ -105,14 +110,12 @@ class PostRepositoryRoomImpl : PostRepository {
                         } else {
                             callback.onError(RuntimeException("error"))
                         }
+                    } catch (e: Exception) {
+                        callback.onError(e)
+                    } finally {
+                        response.close()
                     }
-                    catch (e: Exception){
-                            callback.onError(e)
-                        }
-                     finally {
-                            response.close()
-                    }
-                    }
+                }
 
                 override fun onFailure(call: Call, e: IOException) {
                     callback.onError(e)
@@ -139,6 +142,7 @@ class PostRepositoryRoomImpl : PostRepository {
                         response.close()
                     }
                 }
+
                 override fun onFailure(call: Call, e: IOException) {
                     callback.onError(e)
                 }
