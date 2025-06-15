@@ -13,6 +13,5 @@ data class Post(
     @SerializedName("likes")
     val likesCounter: Long,
     val shareCounter: Long,
-    val viewsCounter: Long,
-    val youtubeUrl: String
+    val viewsCounter: Long
 )

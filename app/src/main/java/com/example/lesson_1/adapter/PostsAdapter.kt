@@ -45,11 +45,6 @@ class PostViewHolder(
         author.text = post.author
         published.text = post.published
         content.text = post.content
-        if (post.youtubeUrl != "") {
-            youtubeGroup.visibility = View.VISIBLE
-        } else {
-            youtubeGroup.visibility = View.GONE
-        }
         likes.apply {
             isChecked = post.likeByMe
             text = translate(post.likesCounter)
@@ -84,22 +79,11 @@ class PostViewHolder(
         }
         viewsCount.text = translate(post.viewsCounter)
 
-        youtubeLogo.setOnClickListener {
-            startYouTube(post.youtubeUrl)
-        }
-        playYoutube.setOnClickListener {
-            startYouTube(post.youtubeUrl)
-        }
         itemView.setOnClickListener { view ->
             if (!isClickOnInteractiveElement(view)) {
                 onInteractionListener.onPostClick(post)
             }
         }
-    }
-
-    private fun startYouTube(youtubeUrl: String) {
-        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(youtubeUrl))
-        itemView.context.startActivity(intent)
     }
 
     private fun isClickOnInteractiveElement(view: View): Boolean {
